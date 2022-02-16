@@ -39,7 +39,7 @@ function addURL($t, $u, $d)
         echo $u . "<br/>\n";
         ob_flush();
         flush();
-        if ($check->rowCount() == 0) {
+        if (intval($check->rowCount()) === 0 || $check->rowCount() === NULL) {
             $sql = $dbh->prepare('INSERT INTO `search` (`title`, `url`, `description`) VALUES (?, ?, ?)');
             $sql->execute(array(
                 $t,
