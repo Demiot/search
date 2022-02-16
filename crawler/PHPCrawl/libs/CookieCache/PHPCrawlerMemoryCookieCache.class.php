@@ -57,7 +57,9 @@ class PHPCrawlerMemoryCookieCache extends PHPCrawlerCookieCacheBase {
         if (isset($this->cookies[$target_domain])) {
 
             // while (list($hash) = each($this->cookies[$target_domain])) {
-            foreach ($this->cookies[$target_domain] as $ĥash) {
+            /** @var string $hash */
+            $hash = "";
+            foreach (array_keys($this->cookies[$target_domain]) as $hash) {
                 $Cookie = $this->cookies[$target_domain][$hash];
 
                 // Does the cookie-domain match?
