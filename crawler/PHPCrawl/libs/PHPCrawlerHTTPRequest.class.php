@@ -1055,7 +1055,8 @@ class PHPCrawlerHTTPRequest
     
     // Post-Data
     reset($this->post_data);
-    while (list($key, $value) = each($this->post_data))
+    //while (list($key, $value) = each($this->post_data))
+    foreach ($this->post_data as $key => $value)
     {
       $post_content .= "-----------------------------10786153015124\r\n";
       $post_content .= "Content-Disposition: form-data; name=\"".$key."\"\r\n\r\n";

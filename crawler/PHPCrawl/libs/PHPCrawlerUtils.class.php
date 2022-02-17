@@ -514,7 +514,9 @@ class PHPCrawlerUtils {
 
         // Für jedes zu sortierende Feld ein eigenes Array bilden
         reset($array);
-        while (list($field) = each($array)) {
+        //while (list($field) = each($array)) 
+        foreach (array_keys($array) as $field)
+        {
             for ($x = 1; $x < count($args); $x++) {
                 // Ist das Argument ein String, sprich ein Sortier-Feld?
                 if (is_string($args[$x])) {
