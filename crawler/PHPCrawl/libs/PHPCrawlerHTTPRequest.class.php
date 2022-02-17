@@ -575,6 +575,7 @@ class PHPCrawlerHTTPRequest
                 $this->socket = stream_socket_client('ssl://'.$ip_address. ":" . $this->url_parts["port"],$error_code,$error_str,$this->socketConnectTimeout, STREAM_CLIENT_CONNECT,$context);
                 if ($this->socket === false) {
                     throw new UnexpectedValueException("Failed to connect: $error_str");
+                    echo $this->url_parts["host"].$this->url_parts["url"];
                 }
       }
       else
@@ -822,7 +823,7 @@ class PHPCrawlerHTTPRequest
     $document_completed = false;
     
     // If chunked encoding and protocol to use is HTTP 1.1
-    if ($this->http_protocol_version == PHPCrawlerHTTPProtocols::HTTP_1_1 && $this->lastResponseHeader->transfer_encoding == "chunked")
+    if ($this->http_protocol_version === PHPCrawlerHTTPProtocols::HTTP_1_1 && $this->lastResponseHeader->transfer_encoding === "chunked")
     {
       // Read size of next chunk
       $chunk_line = fgets($this->socket, 128);
@@ -1054,7 +1055,8 @@ class PHPCrawlerHTTPRequest
     
     // Post-Data
     reset($this->post_data);
-    while (list($key, $value) = each($this->post_data))
+    //while (list($key, $value) = each($this->post_data))
+    foreach ($this->post_data as $key => $value)
     {
       $post_content .= "-----------------------------10786153015124\r\n";
       $post_content .= "Content-Disposition: form-data; name=\"".$key."\"\r\n\r\n";
@@ -1077,7 +1079,8 @@ class PHPCrawlerHTTPRequest
     $cookie_string = "";
     
     reset($this->cookie_array);
-    while(list($key, $value) = each($this->cookie_array))
+    //while(list($key, $value) = each($this->cookie_array))
+    foreach ($this->cookie_array as $key => $value)
     {
       $cookie_string .= "; ".$key."=".$value."";
     }

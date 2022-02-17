@@ -22,7 +22,8 @@ class PHPCrawlerMemoryURLCache extends PHPCrawlerURLCacheBase
     $max_pri_lvl = $this->getMaxPriorityLevel();
     
     reset($this->urls[$max_pri_lvl]);
-    while (list($key) = each($this->urls[$max_pri_lvl]))
+    //while (list($key) = each($this->urls[$max_pri_lvl]))
+    foreach (array_keys($this->urls[$max_pri_lvl]) as $key)
     {
       $UrlDescriptor_next = $this->urls[$max_pri_lvl][$key];
       unset($this->urls[$max_pri_lvl][$key]);
@@ -49,7 +50,8 @@ class PHPCrawlerMemoryURLCache extends PHPCrawlerURLCacheBase
     $URLs = array();
     
     reset($this->urls);
-    while (list($pri_lvl) = each($this->urls))
+    //while (list($pri_lvl) = each($this->urls))
+    foreach (array_keys($this->urls) as $pri_lvl)
     {
       $cnt = count($this->urls[$pri_lvl]);
       for ($x=0; $x<$cnt; $x++)

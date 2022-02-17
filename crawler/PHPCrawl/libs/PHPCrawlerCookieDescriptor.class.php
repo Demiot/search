@@ -137,8 +137,13 @@ class PHPCrawlerCookieDescriptor
     
     // Name and value
     preg_match("#([^=]*)=(.*)#", $parts[0], $match);
+    if (array_count_values($match) !== 0) {
     $name = trim($match[1]);
     $value = trim($match[2]);
+    }else{
+        echo 'something wrong in the header';
+        print_r($parts);
+    }
     
     // Path and Expires
     for ($x=1; $x<count($parts); $x++)
