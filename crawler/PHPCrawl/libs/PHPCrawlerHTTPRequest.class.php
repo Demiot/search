@@ -1078,7 +1078,8 @@ class PHPCrawlerHTTPRequest
     $cookie_string = "";
     
     reset($this->cookie_array);
-    while(list($key, $value) = each($this->cookie_array))
+    //while(list($key, $value) = each($this->cookie_array))
+    foreach ($this->cookie_array as $key => $value)
     {
       $cookie_string .= "; ".$key."=".$value."";
     }
